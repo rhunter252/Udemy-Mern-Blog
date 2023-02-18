@@ -56,7 +56,6 @@ const loginCtrl = expressAsyncHandler(async (req, res) => {
 //Users
 //-------------------------------
 const fetchUsersCtrl = expressAsyncHandler(async (req, res) => {
-  console.log(req.headers);
   try {
     const users = await User.find({});
     res.json(users);
@@ -95,6 +94,39 @@ const fetchUserDetailsCtrl = expressAsyncHandler(async (req, res) => {
   }
 });
 
+//------------------------------
+//User profile
+//------------------------------
+const userProfileCtrl = expressAsyncHandler(async (req, res) => {
+  const { id } = req.params;
+  validateMongodbId(id);
+  //1.Find the login user
+  //2. Check this particular if the login user exists in the array of viewedBy
+
+  //Get the login user
+  const loginUserId = req?.user?._id?.toString();
+  console.log(typeof loginUserId);
+  try {
+    const myProfile = await User.findById(id)
+      .populate("posts")
+      .populate("viewedBy");
+    const alreadyViewed = myProfile?.viewedBy?.find((user) => {
+      console.log(user);
+      return user?._id?.toString() === loginUserId;
+    });
+    if (alreadyViewed) {
+      res.json(myProfile);
+    } else {
+      const profile = await User.findByIdAndUpdate(myProfile?._id, {
+        $push: { viewedBy: loginUserId },
+      });
+      res.json(profile);
+    }
+  } catch (error) {
+    res.json(error);
+  }
+});
+
 module.exports = {
   //profilePhotoUploadCtrl,
   //forgetPasswordToken,
@@ -104,13 +136,13 @@ module.exports = {
   fetchUsersCtrl,
   deleteUsersCtrl,
   fetchUserDetailsCtrl,
-  //userProfileCtrl,
-  //updateUserCtrl,
+  userProfileCtrl,
+  // updateUserCtrl,
   // updateUserPasswordCtrl,
   // followingUserCtrl,
   // unfollowUserCtrl,
   // blockUserCtrl,
   // unBlockUserCtrl,
   // accountVerificationCtrl,
-  //passwordResetCtrl,
+  // passwordResetCtrl,
 };
