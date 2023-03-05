@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as Yup from "yup";
 import { registerUserAction } from "../../../redux/slices/users/usersSlices";
@@ -39,9 +39,9 @@ const Register = () => {
   const storeData = useSelector((store) => store?.users);
   const { loading, appErr, serverErr, registered } = storeData;
 
-  //redirect
+  //Navigate
   if (registered) {
-    return <Redirect to="/login" />;
+    return <Navigate to="/login" />;
   }
 
   return (

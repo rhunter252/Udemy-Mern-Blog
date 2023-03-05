@@ -1,7 +1,7 @@
 const express = require("express");
 const {
   userRegisterCtrl,
-  loginUserCtrl,
+  loginCtrl,
   fetchUsersCtrl,
   deleteUsersCtrl,
   fetchUserDetailsCtrl,
@@ -27,7 +27,7 @@ const {
 const userRoutes = express.Router();
 
 userRoutes.post("/register", userRegisterCtrl);
-userRoutes.post("/login", loginUserCtrl);
+userRoutes.post("/login", loginCtrl);
 userRoutes.put(
   "/profilephoto-upload",
   authMiddleware,
