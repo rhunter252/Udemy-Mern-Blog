@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Route, Navigate } from "react-router-dom";
+import { Route, Navigate, Outlet } from "react-router-dom";
 
 const PrivateProtectRoute = ({ component: Component, ...rest }) => {
   //check if user is loggin
@@ -10,7 +10,7 @@ const PrivateProtectRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={() =>
-        userAuth ? <Component {...rest} /> : <Navigate to="/login" />
+        userAuth ? <Outlet {...rest} /> : <Navigate to="/login" />
       }
     />
   );

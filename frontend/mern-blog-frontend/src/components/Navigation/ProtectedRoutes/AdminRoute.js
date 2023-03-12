@@ -10,7 +10,7 @@ const AdminRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={() =>
-        userAuth?.isAdmin ? <Component {...rest} /> : <Navigate to="/login" />
+        userAuth?.isAdmin ? <Outlet {...rest} /> : <Navigate to="/login" />
       }
     />
   );

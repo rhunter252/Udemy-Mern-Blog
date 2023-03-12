@@ -28,61 +28,117 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Routes>
-        {/* <AdminRoute
-          exact
-          path="/update-category/:id"
-          component={UpdateCategory}
-        /> */}
-        {/* <Route exact path="/update-category/:id" element={AdminRoute}/> */}
         <Route
-          exact
-          path="/password-reset-token"
-          component={ResetPasswordForm}
+          path="/update-category/:id"
+          element={
+            <AdminRoute>
+              <UpdateCategory />
+            </AdminRoute>
+          }
         />
-        <Route exact path="/reset-password/:token" component={ResetPassword} />
-        {/* <AdminRoute exact path="/users" component={UsersList} />
-        <PrivateProtectRoute
-          exact
+        <Route path="/password-reset-token" element={<ResetPasswordForm />} />
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+        <Route
+          path="/users"
+          element={
+            <AdminRoute>
+              <UsersList />
+            </AdminRoute>
+          }
+        />
+        <Route
           path="/upload-profile-photo"
-          component={UploadProfilePhoto}
+          element={
+            <PrivateProtectRoute>
+              <UploadProfilePhoto />
+            </PrivateProtectRoute>
+          }
         />
-
-        <PrivateProtectRoute
-          exact
+        <Route
           path="/update-password"
-          component={UpdatePassword}
+          element={
+            <PrivateProtectRoute>
+              <UpdatePassword />
+            </PrivateProtectRoute>
+          }
         />
-
-        <PrivateProtectRoute
-          exact
+        <Route
           path="/verify-account/:token"
-          component={AccountVerified}
+          element={
+            <PrivateProtectRoute>
+              <AccountVerified />
+            </PrivateProtectRoute>
+          }
         />
-        <PrivateProtectRoute exact path="/send-mail" component={SendEmail} />
-        <PrivateProtectRoute
-          exact
+        <Route
+          path="/send-mail"
+          element={
+            <PrivateProtectRoute>
+              <SendEmail />
+            </PrivateProtectRoute>
+          }
+        />
+        <Route
           path="/update-profile/:id"
-          component={UpdateProfileForm}
+          element={
+            <PrivateProtectRoute>
+              <UpdateProfileForm />
+            </PrivateProtectRoute>
+          }
         />
-        <PrivateProtectRoute
-          exact
+        <Route
           path="/update-post/:id"
-          component={UpdatePost}
+          element={
+            <PrivateProtectRoute>
+              <UpdatePost />
+            </PrivateProtectRoute>
+          }
         />
-        <PrivateProtectRoute exact path="/profile/:id" component={Profile} />
-        <PrivateProtectRoute exact path="/create-post" component={CreatePost} />
-        <PrivateProtectRoute
-          exact
+        <Route
+          path="/profile/:id"
+          element={
+            <PrivateProtectRoute>
+              <Profile />
+            </PrivateProtectRoute>
+          }
+        />
+        <Route
+          path="/create-post"
+          element={
+            <PrivateProtectRoute>
+              <CreatePost />
+            </PrivateProtectRoute>
+          }
+        />
+        <Route
           path="/update-comment/:id"
-          component={UpdateComment}
-        /> */}
-        {/* <AdminRoute exact path="/add-category" component={AddNewCategory} /> */}
-        <Route exact path="/posts" component={PostsList} />
-        <Route exact path="/posts/:id" component={PostDetails} />
-        {/* <AdminRoute exact path="/category-list" component={CategoryList} /> */}
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
+          element={
+            <PrivateProtectRoute>
+              <UpdateComment />
+            </PrivateProtectRoute>
+          }
+        />
+        <Route
+          path="/add-category"
+          element={
+            <AdminRoute>
+              <AddNewCategory />
+            </AdminRoute>
+          }
+        />
+        <Route path="/posts" element={<PostsList />} />
+        <Route path="/posts/:id" element={<PostDetails />} />
+        <Route
+          path="/category-list"
+          element={
+            <AdminRoute>
+              <CategoryList />
+            </AdminRoute>
+          }
+        />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );

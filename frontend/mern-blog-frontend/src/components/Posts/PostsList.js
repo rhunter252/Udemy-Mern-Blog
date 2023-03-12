@@ -13,11 +13,11 @@ import LoadingComponent from "../../utils/LoadingComponent";
 
 export default function PostsList() {
   //select post from store
-  const post = useSelector(state => state?.post);
+  const post = useSelector((state) => state?.post);
   const { postLists, loading, appErr, serverErr, likes, dislikes } = post;
   console.log(postLists);
   //select categories from store
-  const category = useSelector(state => state?.category);
+  const category = useSelector((state) => state?.category);
   const {
     categoryList,
     loading: catLoading,
@@ -77,7 +77,7 @@ export default function PostsList() {
                         No Category Found
                       </h1>
                     ) : (
-                      categoryList?.map(category => (
+                      categoryList?.map((category) => (
                         <li>
                           <p
                             onClick={() =>
@@ -93,7 +93,7 @@ export default function PostsList() {
                   </ul>
                 </div>
               </div>
-              <div class="w-full lg:w-3/4 px-3">
+              <div className="w-full lg:w-3/4 px-3">
                 {/* Post goes here */}
 
                 {appErr || serverErr ? (
@@ -105,7 +105,7 @@ export default function PostsList() {
                     No Post Found
                   </h1>
                 ) : (
-                  postLists?.map(post => (
+                  postLists?.map((post) => (
                     <div
                       key={post.id}
                       className="flex flex-wrap bg-gray-900 -mx-3  lg:mb-6"
@@ -204,10 +204,6 @@ export default function PostsList() {
                             </div>
                           </div>
                         </div>
-                        {/* <p class="text-gray-500">
-                             Quisque id sagittis turpis. Nulla sollicitudin rutrum
-                             eros eu dictum...
-                           </p> */}
                       </div>
                     </div>
                   ))
@@ -217,18 +213,18 @@ export default function PostsList() {
           </div>
         </div>
         <div className="bg-gray-900">
-          <div class="skew bg-green-500 skew-bottom mr-for-radius">
+          <div className="skew bg-green-500 skew-bottom mr-for-radius">
             <svg
-              class="h-8 md:h-12 lg:h-10 w-full text-gray-900"
+              className="h-8 md:h-12 lg:h-10 w-full text-gray-900"
               viewBox="0 0 10 10"
               preserveAspectRatio="none"
             >
               <polygon fill="currentColor" points="0 0 10 0 0 10"></polygon>
             </svg>
           </div>
-          <div class="skew bg-gray-500  skew-bottom ml-for-radius">
+          <div className="skew bg-gray-500  skew-bottom ml-for-radius">
             <svg
-              class="h-8 bg-gray-500 md:h-12 lg:h-20 w-full text-gray-900"
+              className="h-8 bg-gray-500 md:h-12 lg:h-20 w-full text-gray-900"
               viewBox="0 0 10 10"
               preserveAspectRatio="none"
             >
